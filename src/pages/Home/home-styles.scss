@@ -1,0 +1,25 @@
+@import "../../styles/colors";
+
+.banner-text {
+  filter: drop-shadow( 3px 5px 50px rgba(0, 0, 0, .9));
+  -webkit-filter: drop-shadow( 3px 5px 50px rgba(0, 0, 0, .9));
+}
+
+.about-us-section {
+  min-height: 100px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-secondary;
+  padding: 20px 20% 50px;
+}
+
+.about-us-title {
+  color: $color-light;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.about-us-content {
+  color: $color-light
+}

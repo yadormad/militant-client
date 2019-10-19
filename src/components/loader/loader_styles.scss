@@ -1,0 +1,6 @@
+@import "../../styles/colors";
+@import '~@material/react-linear-progress/index.scss';
+@import '~@material/linear-progress/mixins';
+.mdc-linear-progress {
+    @include mdc-linear-progress-bar-color($color-secondary)
+}

@@ -1,0 +1,10 @@
+@import "../../styles/colors";
+@import '~@material/react-drawer/index.scss';
+@import '~@material/react-list/index.scss';
+
+.mdc-drawer {
+    @include mdc-drawer-border-color($color-primary);
+    @include mdc-drawer-surface-fill-color($color-primary);
+    @include mdc-drawer-fill-color-accessible($color-primary);
+}
+

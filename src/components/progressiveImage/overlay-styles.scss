@@ -1,0 +1,21 @@
+
+div.imgContainer {
+  position: relative;
+}
+
+img.full {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+img.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  filter: blur(8px);
+  transition: opacity ease-in 1000ms;
+  clip-path: inset(0);
+}

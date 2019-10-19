@@ -1,0 +1,26 @@
+@import "../../styles/colors";
+
+.logo-group-container{isolation:isolate;}
+.logo-text-max,.logo-worker-back-max,.logo-worker-main-max,.logo-text-min,.logo-worker-back-min,.logo-worker-main-min{fill-rule:evenodd;}
+.logo-text-max{fill:$color-light;}
+.logo-worker-back-max{fill:$color-light;}
+.logo-worker-main-max{fill:desaturate(darken($color-secondary, 5), 5);}
+.logo-text-min{fill:$color-primary;}
+.logo-worker-back-min{fill:$color-light;}
+.logo-worker-main-min{fill:desaturate(darken($color-secondary, 5), 5);}
+.container-min{
+    max-height:48px;
+    max-width:48px;
+    min-height:48px;
+    min-width:48px;
+    border-radius: 50%;
+    background-color: $color-light;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 8px;
+}
+.container-full {
+    height: 48px;
+}
