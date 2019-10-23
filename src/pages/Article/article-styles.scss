@@ -24,3 +24,13 @@ blockquote {
 img {
     width: 100%;
 }
+
+.scrollspy{
+    margin-left: 45%;
+    position: fixed;
+}
+
+.current-scroll{
+    font-size: 1.2em;
+    color: blue;
+}
