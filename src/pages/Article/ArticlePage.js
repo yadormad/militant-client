@@ -6,39 +6,28 @@ import { getArticle, isLoading } from '../../selectors/ArticleSelectors';
 import { fetchArticle } from '../../store/Article/actions';
 import './article-styles.scss';
 import Scrollspy from 'react-scrollspy';
+import ReactHtmlParser from 'react-html-parser';
+
+var h3 = 0;
 
 class ArticlePage extends React.Component {
+    scrollspyGenerated = false;
+    scrollspyData = [];
+    scrollspyNames = new Map();
+    ar;
+
     componentDidMount() {
         const { onDidMount, match } = this.props;
         onDidMount(match.params.id);
     }
 
-    //Данная функция меняет старые id заголовков на id вида header-(число)
-    transformIDs = str => {
-        let regexp = /id=\".*\"/g;
-        let result;
-        let curId = 1;
-        let resStr = str; //результат замены id
-        let resNames = []; //новые id в виде строк
-        let resData = [];
-        while (result = regexp.exec(str)) {
-            //Пока есть совпадения, заменяем их на header-(число)
-            resStr = resStr.replace(result[0], "id=\"header-" + curId + "\"");
-            //и запихиваем строку "header-(число)" в массив
-            resNames.push("header-" + curId);
-            curId++;
+    transform = node => {
+        if(node.name == 'h3'){
+            h3++;
+            node.attribs.id = 'header-' + h3;
+            this.scrollspyData.push(node.attribs.id);
+            this.scrollspyNames.set(node.attribs.id, node.children[0].data);
         }
-        regexp = /<h.*>.*<\/h.>/g;
-        let reg2 = />.*</;
-        while (result = regexp.exec(str)) {
-            //console.log(result[0]);
-            let sub = reg2.exec(result[0])[0];
-            sub = sub.substring(1, sub.length - 1);
-            resData.push(sub);
-            //console.log(sub);
-        }
-        console.log(resData);
-        return {html: resStr, headerIDs: resNames}
     };
 
     render() {
@@ -46,29 +35,26 @@ class ArticlePage extends React.Component {
             article,
             loading,
         } = this.props;
-        let scrollspyNames;
-        if (typeof (article.html) == 'string') {
-            //console.log(typeof (article.html));
-            let {html, headerIDs} = this.transformIDs(article.html);
-            article.html = html;
-            console.log(article.html);
-            scrollspyNames = headerIDs;
-        }
-        console.log(scrollspyNames);
+        if(!this.scrollspyGenerated){
+            if (typeof (article.html) == 'string') {
+                this.ar = ReactHtmlParser(article.html, {transform: this.transform});
+                this.scrollspyGenerated = true;
+            }
+        };
         return (
             <PageWrapper loading={loading}>
-                {scrollspyNames && <Scrollspy items={scrollspyNames} className={'scrollspy'} currentClassName={'current-scroll'}>
+                {!loading && <Scrollspy items={this.scrollspyData} className={'scrollspy'} currentClassName={'current-scroll'}>
                     {
-                        scrollspyNames.map(item =>{
+                        this.scrollspyData.map(item =>{
                             return <li>
-                                <a href={`#${item}`}>{item}</a>
+                                <a href={`#${item}`}>{this.scrollspyNames.get(item)}</a>
                             </li>
                         })
                     }
                 </Scrollspy>}
                 <div className='article-container'>
                     <h1>{article.title}</h1>
-                    {!!article && <Interweave content={article.html} />}
+                    {!!article && this.ar/*<Interweave content={article.html} />*/}
                 </div>
             </PageWrapper>
         );
