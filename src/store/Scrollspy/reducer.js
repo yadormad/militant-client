@@ -3,7 +3,6 @@ import {SET_SCROLLSPY_DATA} from "./constants";
 
 const initState = {
     data: null,
-    names: null
 };
 
 export default (state = initState, { type, payload }) => {
@@ -12,7 +11,6 @@ export default (state = initState, { type, payload }) => {
             return {
                 ...state,
                 data: payload.data,
-                names: payload.names
             };
         }
         default: {

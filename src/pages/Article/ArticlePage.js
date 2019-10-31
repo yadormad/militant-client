@@ -13,7 +13,7 @@ import ScrollspyWithIDs from "../../components/scrollspy/Scrollspy";
 class ArticlePage extends React.Component {
 
     componentDidMount() {
-        const { onDidMount, match, article } = this.props;
+        const { onDidMount, match } = this.props;
         onDidMount(match.params.id);
         //this.articleReact = ReactHtmlParser(article.html, {transform: this.transform});
     }
@@ -28,7 +28,7 @@ class ArticlePage extends React.Component {
                 <ScrollspyWithIDs/>
                 <div className='article-container'>
                     <h1>{article.title}</h1>
-                    {!!article && <ScrollspyHtmlAdapter htmlString={article.html}/>/*<Interweave content={article.html} />*/}
+                    {!!article && !!article.html && <ScrollspyHtmlAdapter htmlString={article.html}/>/*<Interweave content={article.html} />*/}
                 </div>
             </PageWrapper>
         );

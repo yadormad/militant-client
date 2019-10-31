@@ -9,14 +9,14 @@ class ScrollspyWithIDs extends React.Component{
 
 
     render() {
-        const {scrollspyData, scrollspyNames} = this.props;
-        if (!scrollspyData || !scrollspyNames) return null;
+        const {scrollspyData} = this.props;
+        if (!scrollspyData) return null;
         return(
-            <Scrollspy items={scrollspyData} className={'scrollspy'} currentClassName={'current-scroll'}>
+            <Scrollspy items={Object.keys(scrollspyData)} className={'scrollspy'} currentClassName={'current-scroll'}>
                 {
-                    scrollspyData.map(item =>{
+                    Object.keys(scrollspyData).map(item =>{
                         return <li>
-                            <a href={`#${item}`}>{scrollspyNames.item}</a>
+                            <a href={`#${item}`}>{scrollspyData[item]}</a>
                         </li>
                     })
                 }
@@ -27,7 +27,6 @@ class ScrollspyWithIDs extends React.Component{
 
 const mapStateToProps = state => ({
     scrollspyData: state.scrollspy.data,
-    scrollspyNames: state.scrollspy.names
 });
 
 export default connect(mapStateToProps)(ScrollspyWithIDs);
