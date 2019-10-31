@@ -7,54 +7,28 @@ import { fetchArticle } from '../../store/Article/actions';
 import './article-styles.scss';
 import Scrollspy from 'react-scrollspy';
 import ReactHtmlParser from 'react-html-parser';
-
-var h3 = 0;
+import ScrollspyHtmlAdapter from "../../components/scrollspy/ScrollspyHtmlAdapter";
+import ScrollspyWithIDs from "../../components/scrollspy/Scrollspy";
 
 class ArticlePage extends React.Component {
-    scrollspyGenerated = false;
-    scrollspyData = [];
-    scrollspyNames = new Map();
-    ar;
 
     componentDidMount() {
-        const { onDidMount, match } = this.props;
+        const { onDidMount, match, article } = this.props;
         onDidMount(match.params.id);
+        //this.articleReact = ReactHtmlParser(article.html, {transform: this.transform});
     }
-
-    transform = node => {
-        if(node.name == 'h3'){
-            h3++;
-            node.attribs.id = 'header-' + h3;
-            this.scrollspyData.push(node.attribs.id);
-            this.scrollspyNames.set(node.attribs.id, node.children[0].data);
-        }
-    };
 
     render() {
         const {
             article,
             loading,
         } = this.props;
-        if(!this.scrollspyGenerated){
-            if (typeof (article.html) == 'string') {
-                this.ar = ReactHtmlParser(article.html, {transform: this.transform});
-                this.scrollspyGenerated = true;
-            }
-        };
         return (
             <PageWrapper loading={loading}>
-                {!loading && <Scrollspy items={this.scrollspyData} className={'scrollspy'} currentClassName={'current-scroll'}>
-                    {
-                        this.scrollspyData.map(item =>{
-                            return <li>
-                                <a href={`#${item}`}>{this.scrollspyNames.get(item)}</a>
-                            </li>
-                        })
-                    }
-                </Scrollspy>}
+                <ScrollspyWithIDs/>
                 <div className='article-container'>
                     <h1>{article.title}</h1>
-                    {!!article && this.ar/*<Interweave content={article.html} />*/}
+                    {!!article && <ScrollspyHtmlAdapter htmlString={article.html}/>/*<Interweave content={article.html} />*/}
                 </div>
             </PageWrapper>
         );
