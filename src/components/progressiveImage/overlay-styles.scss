@@ -19,3 +19,8 @@ img.overlay {
   transition: opacity ease-in 1000ms;
   clip-path: inset(0);
 }
+
+img {
+  width: 100%;
+  height: auto;
+}

@@ -2,47 +2,24 @@ import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import {setScrollspyData} from "../../store/Scrollspy/actions";
 import {connect} from "react-redux";
+import ScrollspyHtmlTransformer from "../../utils/ScrollspyHtmlTransformer";
 
-class ScrollspyHtmlAdapter extends  React.Component {
-    scrollspyData = {};
-    htmlNodesCounters = {
-        h3: 0,
-        h4: 0,
-        h5: 0,
-        h6: 0
-    };
-
+class ScrollspyHtmlAdapter extends React.Component {
     state = {
         renderedComponents: null
     };
 
-    transform = node => {
-        if(node.name === 'h3'){
-            this.htmlNodesCounters.h3++;
-            node.attribs.id = 'header-' + this.htmlNodesCounters.h3;
-            this.scrollspyData[node.attribs.id] = node.children[0].data;
-        }
-        if(node.name === 'h4'){
-            this.htmlNodesCounters.h4++;
-            node.attribs.id = 'header-' + this.htmlNodesCounters.h4;
-            this.scrollspyData[node.attribs.id] = node.children[0].data;
-        }
-        if(node.name === 'h5'){
-            this.htmlNodesCounters.h5++;
-            node.attribs.id = 'header-' + this.htmlNodesCounters.h5;
-            this.scrollspyData[node.attribs.id] = node.children[0].data;
-        }
-        if(node.name === 'h6'){
-            this.htmlNodesCounters.h6++;
-            node.attribs.id = 'header-' + this.htmlNodesCounters.h6;
-            this.scrollspyData[node.attribs.id] = node.children[0].data;
-        }
-    };
-
     componentDidMount() {
         const {onDidMount, htmlString} = this.props;
-        this.setState({renderedComponents: ReactHtmlParser(htmlString, {transform: this.transform}) });
-        onDidMount(this.scrollspyData);
+        const htmlTransformer = new ScrollspyHtmlTransformer();
+        this.setState({
+            renderedComponents: ReactHtmlParser(htmlString, {transform: htmlTransformer.transform}),
+        });
+        onDidMount(htmlTransformer.scrollspyData);
+    }
+
+    componentWillUnmount() {
+        this.props.onWillUnmount();
     }
 
     render() {
@@ -54,6 +31,7 @@ class ScrollspyHtmlAdapter extends  React.Component {
 
 const mapDispatchToProps = dispatch => ({
     onDidMount: (data) => dispatch(setScrollspyData(data)),
+    onWillUnmount: () => dispatch(setScrollspyData(null)),
 });
 
 export default connect(null, mapDispatchToProps)(ScrollspyHtmlAdapter);

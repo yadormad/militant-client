@@ -1,10 +1,11 @@
 import showdown from 'showdown';
+import {HEADER_LEVEL_START} from "./constants";
 
 class ConverterHelper {
 
     constructor() {
         this.converter = new showdown.Converter();
-        this.converter.setOption('headerLevelStart', 3);
+        this.converter.setOption('headerLevelStart', HEADER_LEVEL_START);
     }
 
     convertMarkDownToHtml = (markdown) => markdown && this.converter.makeHtml(markdown);

@@ -1,8 +1,9 @@
-import {SET_SCROLLSPY_DATA} from "./constants";
+import {CLOSE_SCROLLSPY_VISIBILITY, SET_SCROLLSPY_DATA, TOGGLE_SCROLLSPY_VISIBILITY} from "./constants";
 
 
 const initState = {
     data: null,
+    isPopupVisible: false,
 };
 
 export default (state = initState, { type, payload }) => {
@@ -12,6 +13,18 @@ export default (state = initState, { type, payload }) => {
                 ...state,
                 data: payload.data,
             };
+        }
+        case TOGGLE_SCROLLSPY_VISIBILITY: {
+            return {
+                ...state,
+                isPopupVisible: !state.isPopupVisible,
+            }
+        }
+        case CLOSE_SCROLLSPY_VISIBILITY: {
+            return {
+                ...state,
+                isPopupVisible: false,
+            }
         }
         default: {
             return state;

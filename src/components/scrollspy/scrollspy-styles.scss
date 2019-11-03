@@ -1,9 +1,37 @@
-.scrollspy{
-  margin-left: 45%;
-  position: fixed;
+@import "../../styles/colors";
+
+.scroll-item {
+  list-style-type: none;
 }
 
-.current-scroll > a{
-  font-size: 1.2em;
-  color: darkred;
+.scroll-item > * {
+  text-decoration: none;
+  color: lighten($color-text, 20);
+  cursor: pointer;
+  line-height: 0.8em;
+  font-size: 0.8em;
+}
+
+.scroll-item > *:hover {
+  text-decoration: none;
+  color: desaturate($color-secondary, 20);
+  cursor: pointer;
+}
+
+.current-scroll > * {
+  color: $color-secondary;
+  font-weight: 600;
+}
+
+.scrollspy-fixed-container {
+  position: fixed;
+  top: 72px;
+  border-left: 1px solid lighten($color-text, 40);
+  right: 8px;
+  width: 25%;
+  padding-left: 12px;
+}
+
+@media (max-width: 960px) {
+  .scrollspy-fixed-container {display: none;}
 }

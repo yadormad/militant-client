@@ -5,13 +5,12 @@ import LogoIcon from "../../../components/icons/LogoIcon";
 import '../home-styles.scss'
 
 const HomeBanner = ({fullUrl, overlayUrl}) => {
-    if (!fullUrl || !overlayUrl) return null;
     return (
         <div style={{position: 'relative'}}>
             <ProgressiveImage
                 overlayUrl={overlayUrl}
                 fullUrl={fullUrl}
-                width='100%'
+                className='homeBanner'
             />
             <LogoIcon
                 svgParams={{

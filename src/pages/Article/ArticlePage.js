@@ -1,14 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Interweave from 'interweave';
 import PageWrapper from '../../components/pageWrapper/PageWrapper';
 import { getArticle, isLoading } from '../../selectors/ArticleSelectors';
 import { fetchArticle } from '../../store/Article/actions';
 import './article-styles.scss';
-import Scrollspy from 'react-scrollspy';
-import ReactHtmlParser from 'react-html-parser';
-import ScrollspyHtmlAdapter from "../../components/scrollspy/ScrollspyHtmlAdapter";
-import ScrollspyWithIDs from "../../components/scrollspy/Scrollspy";
+import {ScrollspyHtmlAdapter, ScrollspyFixedContainer} from "../../components/scrollspy";
 
 class ArticlePage extends React.Component {
 
@@ -25,7 +21,7 @@ class ArticlePage extends React.Component {
         } = this.props;
         return (
             <PageWrapper loading={loading}>
-                <ScrollspyWithIDs/>
+                <ScrollspyFixedContainer/>
                 <div className='article-container'>
                     <h1>{article.title}</h1>
                     {!!article && !!article.html && <ScrollspyHtmlAdapter htmlString={article.html}/>/*<Interweave content={article.html} />*/}
