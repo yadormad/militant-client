@@ -10,15 +10,15 @@ import PropTypes from 'prop-types';
 import './header_styles.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogoIconSmall from '../icons/LogoIconSmall';
 import SideMenu from '../sidemenu/SideMenu';
 import { toggleVisibility } from '../../store/SideMenu/actions';
 import LogoIcon from "../icons/LogoIcon";
+import ScrollspyHeaderButton from "./ScrollspyHeaderButton";
 
 const Header = ({ onMenuButtonClick }) => (
     <>
         <SideMenu />
-        <TopAppBar>
+        <TopAppBar fixed>
             <TopAppBarRow>
                 <TopAppBarSection align='start'>
                     <TopAppBarIcon navIcon tabIndex={0}>
@@ -29,6 +29,9 @@ const Header = ({ onMenuButtonClick }) => (
                             <LogoIcon className='logo-icon' />
                         </Link>
                     </TopAppBarTitle>
+                </TopAppBarSection>
+                <TopAppBarSection align='end'>
+                    <ScrollspyHeaderButton />
                 </TopAppBarSection>
             </TopAppBarRow>
         </TopAppBar>

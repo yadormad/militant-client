@@ -2,16 +2,24 @@
 @import '~@material/react-top-app-bar/index.scss';
 @import '~@material/react-material-icon/index.scss';
 @import "~@material/top-app-bar/mixins";
+@import '~@material/react-menu-surface/index.scss';
 
 .mdc-top-app-bar {
     @include mdc-top-app-bar-fill-color($color-primary);
     @include mdc-top-app-bar-ink-color($color-light);
     @include mdc-top-app-bar-icon-ink-color($color-light);
-    position: sticky;
 }
 
 .logo-icon {
     width: 100%;
     margin-top: 12px;
     margin-bottom: 12px;
+}
+
+.scrollspy-popup-container {
+    padding: 12px;
+}
+
+@media (min-width: 960px) {
+    .scrollspy-header-button {display: none;}
 }

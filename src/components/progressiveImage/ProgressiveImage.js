@@ -22,20 +22,25 @@ export default class ProgressiveImage extends React.PureComponent {
             className,
             ...imgProps
         } = this.props;
+        if (!fullUrl || !overlayUrl) return null;
         const {isImageLoaded} = this.state;
         return (
             <div className={className} style={{position: 'relative'}}>
-                <img
-                    src={overlayUrl}
-                    className='overlay'
-                    {...isImageLoaded && { style: { opacity: "0" } }}
-                    {...imgProps}
-                />
-                <img
-                    onLoad={this.onImageLoaded}
-                    src={fullUrl}
-                    {...imgProps}
-                />
+                {!!(fullUrl && overlayUrl) && (
+                    <>
+                        <img
+                            src={overlayUrl}
+                            className='overlay'
+                            {...isImageLoaded && { style: { opacity: "0" } }}
+                            {...imgProps}
+                        />
+                        <img
+                            onLoad={this.onImageLoaded}
+                            src={fullUrl}
+                            {...imgProps}
+                        />
+                    </>
+                )}
             </div>
         )
     }
