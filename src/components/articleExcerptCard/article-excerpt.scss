@@ -1,0 +1,79 @@
+@import "../../styles/colors";
+
+.article-excerpt-header {
+  height: 8rem;
+  background-image: linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,0.8));
+  width: 100%;
+  padding-left: 1rem;
+  padding-top: 0.8rem;
+}
+
+.article-excerpt-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.article-excerpt-title-overlay {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7));
+  width: 100%;
+  padding-left: 1rem;
+  padding-top: 0.8rem;
+}
+
+.article-excerpt-content-overlay {
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  padding: 1rem 1rem 0.8rem;
+}
+
+.article-excerpt-title {
+  font-size: 1.15rem;
+  color: $color-light;
+  font-weight: bold;
+  text-align: end;
+}
+
+.article-excerpt-content__minimized {
+  max-height: 5rem !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: max-height 0.5s ease-out;
+}
+
+.article-excerpt-content {
+  font-size: 0.9rem;
+  max-height: 60rem;
+  color: $color-light;
+  transition: max-height 0.5s ease-out;
+}
+
+.article-excerpt-author {
+  font-size: 0.9rem;
+  color: $color-light
+}
+
+.article-excerpt-date {
+  font-size: 0.7rem;
+  margin-top: 0.1rem;
+  color: $color-light;
+}
+
+.article-excerpt-learn-more {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  color: $color-light;
+  text-decoration: underline;
+  text-align: end;
+  cursor: pointer;
+  transition: box-shadow 0.1s ease-out;
+}
+
+.article-excerpt-learn-more:hover {
+  text-shadow: 0 0 0.1rem $color-light;
+}
+
+.article-excerpt-content-margin-minified {
+  margin-top: 4rem;
+}

@@ -44,10 +44,10 @@ export const fetchArticle = (id) => async (dispatch) => {
     }
 };
 
-export const fetchArticlesList = () => async (dispatch) => {
+export const fetchArticlesList = (from, to) => async (dispatch) => {
     dispatch(fetchArticleListBegin());
     try {
-        const articleList = await Service.fetchArticleListMinified();
+        const articleList = await Service.fetchArticleListMinified(from, to);
         dispatch(fetchArticleListSuccess(articleList));
     } catch (e) {
         dispatch(fetchArticleListFailure(e));

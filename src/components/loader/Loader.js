@@ -6,7 +6,6 @@ const Loader = ({visible}) => (
     <LinearProgress
         indeterminate
         closed={!visible}
-        style={{position: "absolute"}}
     />
 );
 

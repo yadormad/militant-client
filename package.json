@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/react-card": "^0.15.0",
     "@material/react-drawer": "^0.15.0",
     "@material/react-linear-progress": "^0.14.1",
     "@material/react-list": "^0.15.0",
@@ -12,6 +13,7 @@
     "@material/ripple": "^3.2.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "dayjs": "^1.8.17",
     "interweave": "^11.2.0",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
@@ -31,7 +33,8 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "start": "export SASS_PATH=./node_modules | PORT=3003 react-scripts start",
+    "start-linux": "export SASS_PATH=./node_modules | PORT=3003 react-scripts start",
+    "start-windows": "PORT=3003 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

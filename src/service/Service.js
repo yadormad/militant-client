@@ -1,9 +1,16 @@
 import axios from 'axios';
 
 export default class Service {
-    static async fetchArticleListMinified() {
-        const {data} = await axios.get('/post/list');
-        return data;
+    static async fetchArticleListMinified(from, to) {
+        const {data} = await axios.get('/post/list', {
+            headers: {
+                'Range': `${from}/${to}`
+            }
+        });
+        return data/*.map(post => ({
+            ...post,
+            modified: post.modified && Date(post.modified)
+        }));*/
     };
 
     static async fetchArticleById(id) {

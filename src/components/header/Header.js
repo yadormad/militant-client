@@ -30,7 +30,7 @@ const Header = ({ onMenuButtonClick }) => (
                         </Link>
                     </TopAppBarTitle>
                 </TopAppBarSection>
-                <TopAppBarSection align='end'>
+                <TopAppBarSection align='end' role='toolbar'>
                     <ScrollspyHeaderButton />
                 </TopAppBarSection>
             </TopAppBarRow>

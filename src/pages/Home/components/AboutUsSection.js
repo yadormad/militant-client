@@ -2,18 +2,18 @@ import React from 'react';
 import {connect} from "react-redux";
 import {getAboutUsContent, getAboutUsTitle, isAboutUsLoading} from "../../../selectors/HomeSelectors";
 import Loader from "../../../components/loader/Loader";
-import Interweave from "interweave";
+import htmlParser from 'react-html-parser';
 
 const AboutUsSection = ({title, content, loading}) => (
     <div className='about-us-section'>
         <Loader visible={loading}/>
         {!loading && (
             <>
-                <h3 className='about-us-title'>
+                <h2 className='about-us-title'>
                     {title}
-                </h3>
+                </h2>
                 <p className='about-us-content'>
-                    <Interweave content={content} />
+                    {htmlParser(content)}
                 </p>
             </>
         )}

@@ -24,7 +24,7 @@ class ArticlePage extends React.Component {
                 <ScrollspyFixedContainer/>
                 <div className='article-container'>
                     <h1>{article.title}</h1>
-                    {!!article && !!article.html && <ScrollspyHtmlAdapter htmlString={article.html}/>/*<Interweave content={article.html} />*/}
+                    {!!article && !!article.html && <ScrollspyHtmlAdapter htmlString={article.html}/>}
                 </div>
             </PageWrapper>
         );

@@ -7,6 +7,8 @@ import {fetchAboutUs, fetchBannerImage} from "../../store/Home/actions";
 import HomeBanner from "./components/HomeBanner";
 import AbsolutePageWrapper from "../../components/pageWrapper/AbsolutePageWrapper";
 import AboutUsSection from "./components/AboutUsSection";
+import ArticleExcerptCard from "../../components/articleExcerptCard/ArticleExcerptCard";
+import ArticleExcerptList from "./components/ArticleExcerptList";
 
 class HomePage extends React.Component {
     componentDidMount() {
@@ -23,9 +25,10 @@ class HomePage extends React.Component {
             <AbsolutePageWrapper loading={loading}>
                 <HomeBanner />
                 <AboutUsSection />
-                {articleList.map(article => (
-                    <Link to={`/article/${article.id}`}>{article.title}</Link>
-                ))}
+                <ArticleExcerptList articleList={articleList}/>
+                <div style={{height: 400}}>
+
+                </div>
             </AbsolutePageWrapper>
         );
     }
@@ -38,7 +41,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onComponentMount: () => {
-        dispatch(fetchArticlesList());
+        dispatch(fetchArticlesList(0, 3));
         dispatch(fetchBannerImage());
         dispatch(fetchAboutUs())
     },
