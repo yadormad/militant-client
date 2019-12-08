@@ -5,6 +5,7 @@
   "dependencies": {
     "@material/react-card": "^0.15.0",
     "@material/react-drawer": "^0.15.0",
+    "@material/react-icon-button": "^0.15.0",
     "@material/react-linear-progress": "^0.14.1",
     "@material/react-list": "^0.15.0",
     "@material/react-material-icon": "^0.12.0",
@@ -19,6 +20,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.14",
+    "react-collapse": "^5.0.0",
     "react-dom": "^16.10.2",
     "react-html-parser": "^2.0.2",
     "react-redux": "^7.1.1",

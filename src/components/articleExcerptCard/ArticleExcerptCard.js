@@ -1,8 +1,12 @@
 import React from 'react';
-import {Card} from "../card";
-import ArticleExcerptHeader from "./ArticleExcerptHeader";
+import Card, {
+    CardPrimaryContent,
+    CardMedia,
+} from "@material/react-card";
 import {formatDate, reformatDateAndTime} from "../../utils/DateHelpers";
 import ArticleExcerptContent from "./ArticleExcerptContent";
+import '@material/react-card/index.scss';
+import {withRouter} from "react-router-dom";
 
 class ArticleExcerptCard extends React.Component {
     getArticleDate() {
@@ -11,29 +15,42 @@ class ArticleExcerptCard extends React.Component {
         return formatDate(modified);
     }
 
-    render() {
+    articleCollapseRef = React.createRef();
+
+    goToArticle = () => {
         const {article, history} = this.props;
+        history.push(`/article/${article.id}`);
+    };
+
+    getCardContainerClassName() {
+        return `card-container ${this.articleCollapseRef.state && this.articleCollapseRef.state.isOpened && 'card-container--opened'}`;
+    }
+
+    render() {
+        const {
+            title,
+            image,
+            html,
+            author,
+        } = this.props.article;
         return (
-            <Card
-                expandable
-                /*onPress={() => history.push(`/article/${article.id}`)}*/
-                backgroundImageUrls={article.image}
-            >
-                <div className="article-excerpt-container">
-                    <ArticleExcerptHeader
-                        author={article.author}
-                        date={this.getArticleDate()}
-                    />
+            <div className='card-relative-container'>
+                <Card className={this.getCardContainerClassName()}>
+                    <CardPrimaryContent onClick={this.goToArticle}>
+                        <CardMedia wide imageUrl={image.fullImageUrl || image.overlayImageUrl} />
+                    </CardPrimaryContent>
                     <ArticleExcerptContent
-                        className="article-excerpt-content-margin-minified"
-                        title={article.title}
-                        excerpt={article.excerpt}
-                        route={`/article/${article.id}`}
+                        ref={this.articleCollapseRef}
+                        title={title}
+                        excerpt={html}
+                        author={author}
+                        date={this.getArticleDate()}
+                        goToArticle={this.goToArticle}
                     />
-                </div>
-            </Card>
+                </Card>
+            </div>
         );
     }
 }
 
-export default ArticleExcerptCard;
+export default withRouter(ArticleExcerptCard);
