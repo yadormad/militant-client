@@ -1,18 +1,26 @@
 import React from 'react';
-import {Col, Container, Row} from 'react-bootstrap';
-import Loader from "../loader/Loader";
+import {Cell, Grid, Row} from '@material/react-layout-grid';
 
-const AdaptivePageWrapper = ({children}) => (
-    <Container>
+const AdaptivePageWrapper = ({children, right, left}) => (
+    <Grid>
         <Row>
-            <Col
-                md={{ span: 8, offset: 2 }}
-                lg={{ span: 6, offset: 3 }}
+            <Cell
+                desktopColumns={3} tabletColumns={1}
+            >
+                {left}
+            </Cell>
+            <Cell
+                desktopColumns={6} tabletColumns={6}
             >
                 {children}
-            </Col>
+            </Cell>
+            <Cell
+                desktopColumns={3} tabletColumns={1}
+            >
+                {right}
+            </Cell>
         </Row>
-    </Container>
+    </Grid>
 );
 
 export default AdaptivePageWrapper;

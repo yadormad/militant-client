@@ -24,9 +24,9 @@ const ScrollspyContent = ({scrollspyData}) => (
         {
             Object.keys(scrollspyData).map(itemKey => (
                 <li className='scroll-item' style={getItemStyleByLevel(scrollspyData[itemKey].level)}>
-                    <span onClick={() => scrollToRef(scrollspyData[itemKey].headerRef)}>
+                    <div onClick={() => scrollToRef(scrollspyData[itemKey].headerRef)}>
                         {scrollspyData[itemKey].name}
-                    </span>
+                    </div>
                 </li>
             ))
         }

@@ -29,7 +29,7 @@ export default class CollapseWrapper extends React.Component {
                         <MaterialIcon icon='keyboard_arrow_down' className={this.getIconClassName()}/>
                     </IconButton>
                 </div>
-                <Collapse checkTimeout={500} isOpened={this.state.isOpened}>
+                <Collapse checkTimeout={300} isOpened={this.state.isOpened}>
                     {children}
                 </Collapse>
             </>

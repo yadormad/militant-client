@@ -11,7 +11,6 @@ class ArticlePage extends React.Component {
     componentDidMount() {
         const { onDidMount, match } = this.props;
         onDidMount(match.params.id);
-        //this.articleReact = ReactHtmlParser(article.html, {transform: this.transform});
     }
 
     render() {
@@ -20,8 +19,9 @@ class ArticlePage extends React.Component {
             loading,
         } = this.props;
         return (
-            <PageWrapper loading={loading}>
-                <ScrollspyFixedContainer/>
+            <PageWrapper loading={loading}
+                 right={<ScrollspyFixedContainer/>}
+            >
                 <div className='article-container'>
                     <h1>{article.title}</h1>
                     {!!article && !!article.html && <ScrollspyHtmlAdapter htmlString={article.html}/>}

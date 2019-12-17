@@ -2,9 +2,12 @@ import React from 'react';
 import AbsolutePageWrapper from "./AbsolutePageWrapper";
 import AdaptivePageWrapper from "./AdaptivePageWrapper";
 
-const PageWrapper = ({children, loading}) => (
+const PageWrapper = ({children, right, left, loading}) => (
     <AbsolutePageWrapper loading={loading}>
-        <AdaptivePageWrapper>
+        <AdaptivePageWrapper
+            right={right}
+            left={left}
+        >
             {children}
         </AdaptivePageWrapper>
     </AbsolutePageWrapper>

@@ -7,9 +7,7 @@ import {fetchAboutUs, fetchBannerImage} from "../../store/Home/actions";
 import HomeBanner from "./components/HomeBanner";
 import AbsolutePageWrapper from "../../components/pageWrapper/AbsolutePageWrapper";
 import AboutUsSection from "./components/AboutUsSection";
-import ArticleExcerptCard from "../../components/articleExcerptCard/ArticleExcerptCard";
-import ArticleExcerptList from "./components/ArticleExcerptList";
-
+import ArticleExcerptList from "../../components/articleExcerpt/ArticleExcerptList";
 class HomePage extends React.Component {
     componentDidMount() {
         const { onComponentMount } = this.props;

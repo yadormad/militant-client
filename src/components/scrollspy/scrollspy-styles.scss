@@ -2,14 +2,15 @@
 
 .scroll-item {
   list-style-type: none;
+  padding: .25rem 0 .25rem 0;
 }
 
 .scroll-item > * {
   text-decoration: none;
   color: lighten($color-text, 20);
   cursor: pointer;
-  line-height: 0.8em;
-  font-size: 0.8em;
+  line-height: 1rem;
+  font-size: 0.8rem;
 }
 
 .scroll-item > *:hover {
@@ -27,11 +28,9 @@
   position: fixed;
   top: 72px;
   border-left: 1px solid lighten($color-text, 40);
-  right: 8px;
-  width: 25%;
   padding-left: 12px;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 840px) {
   .scrollspy-fixed-container {display: none;}
 }
