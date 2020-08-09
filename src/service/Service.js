@@ -3,9 +3,10 @@ import axios from 'axios';
 export default class Service {
     static async fetchArticleListMinified(from, to) {
         const {data} = await axios.get('/post/list', {
-            headers: {
-                'Range': `${from}/${to}`
-            }
+            params: {
+                _start: from,
+                _limit: from + to,
+            },
         });
         return data/*.map(post => ({
             ...post,
@@ -15,7 +16,7 @@ export default class Service {
 
     static async fetchArticleById(id) {
         const {data} = await axios.get(`/post/${id}`);
-        return data
+        return data;
     }
 
     static async fetchHomeBannerImage() {

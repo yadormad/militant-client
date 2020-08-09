@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getArticleList, isLoading } from '../../selectors/ArticleSelectors';
 import { fetchArticlesList } from '../../store/Article/actions';
 import {fetchAboutUs, fetchBannerImage} from "../../store/Home/actions";

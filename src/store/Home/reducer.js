@@ -3,6 +3,7 @@ import {
     FETCH_ABOUT_US_BEGIN,
     FETCH_ABOUT_US_COMPLETE,
 } from "./constants";
+import axios from 'axios';
 
 
 const initState = {
@@ -20,8 +21,8 @@ export default (state = initState, { type, payload }) => {
             return {
                 ...state,
                 bannerImage: {
-                    full: payload.fullImageUrl,
-                    overlay: payload.overlayImageUrl,
+                    full: `${axios.defaults.baseURL}${payload.fullImageUrl}`,
+                    overlay: `${axios.defaults.baseURL}${payload.overlayImageUrl}`,
                 }
             };
         case FETCH_ABOUT_US_BEGIN:
