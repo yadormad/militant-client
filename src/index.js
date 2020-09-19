@@ -9,7 +9,7 @@ import reducer from './store/reducer';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 
-axios.defaults.baseURL = 'http://127.0.0.1:1337';
+axios.defaults.baseURL = 'https://cryptic-dusk-41955.herokuapp.com'; //'http://127.0.0.1:1337';
 
 //axios.defaults.headers['Cockpit-Token'] = process.env.REACT_APP_API_KEY;
 

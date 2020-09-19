@@ -7,6 +7,8 @@ import HomeBanner from "./components/HomeBanner";
 import AbsolutePageWrapper from "../../components/pageWrapper/AbsolutePageWrapper";
 import AboutUsSection from "./components/AboutUsSection";
 import ArticleExcerptList from "../../components/articleExcerpt/ArticleExcerptList";
+import Canvas from '../../components/CanvasTest';
+
 class HomePage extends React.Component {
     componentDidMount() {
         const { onComponentMount } = this.props;
@@ -24,7 +26,7 @@ class HomePage extends React.Component {
                 <AboutUsSection />
                 <ArticleExcerptList articleList={articleList}/>
                 <div style={{height: 400}}>
-
+                    <Canvas />
                 </div>
             </AbsolutePageWrapper>
         );
