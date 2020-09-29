@@ -4,29 +4,18 @@ import {setScrollspyData} from "../../store/Scrollspy/actions";
 import {connect} from "react-redux";
 import ScrollspyHtmlTransformer from "../../utils/ScrollspyHtmlTransformer";
 
-class ScrollspyHtmlAdapter extends React.Component {
-    state = {
-        renderedComponents: null
-    };
-
-    componentDidMount() {
-        const {onDidMount, htmlString} = this.props;
-        const htmlTransformer = new ScrollspyHtmlTransformer();
-        this.setState({
-            renderedComponents: ReactHtmlParser(htmlString, {transform: htmlTransformer.transform}),
-        });
-        onDidMount(htmlTransformer.scrollspyData);
-    }
-
-    componentWillUnmount() {
-        this.props.onWillUnmount();
-    }
-
-    render() {
-        return(
-            <div>{this.state.renderedComponents}</div>
-        )
-    }
+const ScrollspyHtmlAdapter = ({onDidMount, onWillUnmount, htmlString}) => {
+    const htmlTransformer = React.useMemo(() => new ScrollspyHtmlTransformer(), [htmlString]);
+    const renderedComponents = React.useMemo(() => (
+        ReactHtmlParser(htmlString, {transform: htmlTransformer.transform})
+    ), [htmlString, htmlTransformer]);
+    React.useEffect(() => {
+        onDidMount(htmlTransformer.scrollspyData)
+        return onWillUnmount;
+    }, [htmlTransformer.scrollspyData]);
+    return(
+        <div>{renderedComponents}</div>
+    )
 }
 
 const mapDispatchToProps = dispatch => ({

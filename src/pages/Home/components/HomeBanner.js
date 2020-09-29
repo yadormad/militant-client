@@ -3,16 +3,17 @@ import ProgressiveImage from "../../../components/progressiveImage/ProgressiveIm
 import {connect} from "react-redux";
 import LogoIcon from "../../../components/icons/LogoIcon";
 import '../home-styles.scss'
+import banner from  '../../../banner.jpg'
 
 const HomeBanner = ({fullUrl, overlayUrl}) => {
     return (
         <div style={{position: 'relative'}}>
             <ProgressiveImage
-                overlayUrl={overlayUrl}
-                fullUrl={fullUrl}
+                overlayUrl={banner}
+                fullUrl={banner}
                 className='homeBanner'
             />
-            <LogoIcon
+            {/*<LogoIcon
                 svgParams={{
                     width: '50%',
                     height: 'auto',
@@ -26,7 +27,7 @@ const HomeBanner = ({fullUrl, overlayUrl}) => {
                     height: '100px',
                     width: '100%'
                 }}
-            />
+            />*/}
         </div>
     )
 };

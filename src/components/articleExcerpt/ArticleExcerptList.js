@@ -10,7 +10,7 @@ const ArticleExcerptList = ({articleList}) => (
             <Cell desktopColumns={10} tabletColumns={6} phoneColumns={4}>
                 <Row>
                     {articleList.map(article => (
-                        <Cell key={article.id} desktopColumns={5} tabletColumns={4} phoneColumns={4}>
+                        <Cell key={article.id} desktopColumns={6} tabletColumns={8} phoneColumns={4}>
                             <ArticleExcerptCard article={article}/>
                         </Cell>
                     ))}

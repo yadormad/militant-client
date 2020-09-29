@@ -5,19 +5,21 @@ import Loader from "../../../components/loader/Loader";
 import htmlParser from 'react-html-parser';
 
 const AboutUsSection = ({title, content, loading}) => (
-    <div className='about-us-section'>
+    <>
         <Loader visible={loading}/>
-        {!loading && (
-            <>
-                <h2 className='about-us-title'>
-                    {title}
-                </h2>
-                <p className='about-us-content'>
-                    {htmlParser(content)}
-                </p>
-            </>
-        )}
-    </div>
+        <div className='about-us-section'>
+            {!loading && (
+                <>
+                    <h2 className='about-us-title'>
+                        {title}
+                    </h2>
+                    <p className='about-us-content'>
+                        {htmlParser(content)}
+                    </p>
+                </>
+            )}
+        </div>
+    </>
 );
 
 const mapStateToProps = (state) => ({

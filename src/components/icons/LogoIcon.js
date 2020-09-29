@@ -2,8 +2,8 @@ import React from 'react';
 import './icon-styles.scss';
 /* eslint-disable max-len */
 
-const LogoIcon = ({ svgParams, style }) => (
-    <div className='container-full' style={style}>
+const LogoIcon = ({ svgParams, style, className }) => (
+    <div className={className} style={style}>
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2526.35 537.36' height='100%' width='auto' {...svgParams}>
             <g id='text' className='logo-group-container'>
                 <path

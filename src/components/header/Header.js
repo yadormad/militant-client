@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import TopAppBar, {
     TopAppBarRow,
     TopAppBarSection,
@@ -15,28 +15,51 @@ import { toggleVisibility } from '../../store/SideMenu/actions';
 import LogoIcon from "../icons/LogoIcon";
 import ScrollspyHeaderButton from "./ScrollspyHeaderButton";
 
-const Header = ({ onMenuButtonClick }) => (
-    <>
-        <SideMenu />
-        <TopAppBar fixed>
-            <TopAppBarRow>
-                <TopAppBarSection align='start'>
-                    <TopAppBarIcon navIcon tabIndex={0}>
-                        <MaterialIcon hasRipple icon='menu' onClick={onMenuButtonClick} />
-                    </TopAppBarIcon>
-                    <TopAppBarTitle>
-                        <Link to='/'>
-                            <LogoIcon className='logo-icon' />
-                        </Link>
-                    </TopAppBarTitle>
-                </TopAppBarSection>
-                <TopAppBarSection align='end' role='toolbar'>
-                    <ScrollspyHeaderButton />
-                </TopAppBarSection>
-            </TopAppBarRow>
-        </TopAppBar>
-    </>
-);
+// 200ms linear;
+const HeaderFilledContainer = ({isOpen}) => (
+    <TopAppBar fixed >
+
+        <TopAppBarRow />
+    </TopAppBar>
+)
+
+const Header = ({ onMenuButtonClick }) => {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const handleScroll = useCallback(() => {
+        if (!isScrolled && window.scrollY) {
+            setIsScrolled(true);
+        }
+        if (isScrolled && !window.scrollY) {
+            setIsScrolled(false);
+        }
+    }, [isScrolled, setIsScrolled]);
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    })
+    return (
+        <>
+            <SideMenu />
+            <TopAppBar fixed className={isScrolled ? 'mdc-top-app-bar--filled' : ''}>
+                <TopAppBarRow>
+                    <TopAppBarSection align='start'>
+                        <TopAppBarIcon navIcon tabIndex={0}>
+                            <MaterialIcon hasRipple icon='menu' onClick={onMenuButtonClick} />
+                        </TopAppBarIcon>
+                        <TopAppBarTitle>
+                            <Link to='/'>
+                                <LogoIcon className={`logo-icon ${!isScrolled ? 'logo-icon--onHeader' : ''}`} />
+                            </Link>
+                        </TopAppBarTitle>
+                    </TopAppBarSection>
+                    <TopAppBarSection align='end' role='toolbar'>
+                        <ScrollspyHeaderButton />
+                    </TopAppBarSection>
+                </TopAppBarRow>
+            </TopAppBar>
+        </>
+    );
+}
 
 Header.propTypes = {
     onMenuButtonClick: PropTypes.func,

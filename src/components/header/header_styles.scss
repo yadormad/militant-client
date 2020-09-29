@@ -5,15 +5,33 @@
 @import '~@material/react-menu-surface/index.scss';
 
 .mdc-top-app-bar {
-    @include mdc-top-app-bar-fill-color($color-primary);
+    background: linear-gradient(rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.2) 80%, rgba(0, 0, 0, 0) 100%);
     @include mdc-top-app-bar-ink-color($color-light);
     @include mdc-top-app-bar-icon-ink-color($color-light);
+    transition: all 200ms linear;
+}
+
+.mdc-top-app-bar__title {
+    overflow: visible;
+}
+
+.mdc-top-app-bar--filled {
+    background: $color-primary;
+    transition: all 200ms linear;
 }
 
 .logo-icon {
-    width: 100%;
+    width: 200px;
     margin-top: 12px;
     margin-bottom: 12px;
+    position: relative;
+    top: 0;
+    transition: all 200ms ease-in-out;
+}
+
+.logo-icon--onHeader {
+    width: 300px;
+    top: 200px;
 }
 
 .scrollspy-popup-container {

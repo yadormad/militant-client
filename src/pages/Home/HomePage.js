@@ -25,9 +25,9 @@ class HomePage extends React.Component {
                 <HomeBanner />
                 <AboutUsSection />
                 <ArticleExcerptList articleList={articleList}/>
-                <div style={{height: 400}}>
+                {/*<div style={{height: 400}}>
                     <Canvas />
-                </div>
+                </div>*/}
             </AbsolutePageWrapper>
         );
     }
