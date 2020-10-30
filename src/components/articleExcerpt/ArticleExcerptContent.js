@@ -15,7 +15,7 @@ const ArticleExcerptContent = ({title, excerpt, author, date, goToArticle}) => (
                     >
                         {title}
                     </h3>
-                    <span className='article-excerpt-author'>{`${author}${author && ' • '}${date}`}</span>
+                    <span className='article-excerpt-author'>{`${author} • ${date}`}</span>
                 </div>
             )}
         >

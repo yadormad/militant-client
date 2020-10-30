@@ -8,14 +8,17 @@ export default class Service {
                 _limit: from + to,
             },
         });
-        return data/*.map(post => ({
+        return data.map(post => ({
+            ...post,
+            date: post.created_at,
+        }))/*.map(post => ({
             ...post,
             modified: post.modified && Date(post.modified)
         }));*/
     };
 
     static async fetchArticleById(id) {
-        const {data} = await axios.get(`/post/${id}`);
+        const {data} = await axios.get(`/posts/${id}`);
         return data;
     }
 
@@ -25,7 +28,7 @@ export default class Service {
     }
 
     static async fetchHomeAboutUs() {
-        const {data} = await axios.get(`/home/aboutUs`);
+        const {data} = await axios.get(`/about-us`);
         return data;
     }
 }

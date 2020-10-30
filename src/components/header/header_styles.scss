@@ -28,8 +28,18 @@
     top: 0;
     transition: all 200ms ease-in-out;
 }
+.logo-icon > svg {
+    -webkit-filter: drop-shadow( 0 0 10px rgba(0, 0, 0, 0));
+    filter: drop-shadow( 0 0 10px rgba(0, 0, 0, 0));
+    transition: all 200ms ease-in-out;
+}
 
-.logo-icon--onHeader {
+.logo-icon--onBanner > svg {
+    -webkit-filter: drop-shadow( 0 0 10px rgba(0, 0, 0, 1));
+    filter: drop-shadow( 0 0 10px rgba(0, 0, 0, 1));
+}
+
+.logo-icon--onBanner {
     width: 300px;
     top: 200px;
 }

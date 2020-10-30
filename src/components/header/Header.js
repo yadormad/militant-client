@@ -14,6 +14,7 @@ import SideMenu from '../sidemenu/SideMenu';
 import { toggleVisibility } from '../../store/SideMenu/actions';
 import LogoIcon from "../icons/LogoIcon";
 import ScrollspyHeaderButton from "./ScrollspyHeaderButton";
+import {isHomePage} from "../../utils/RouterHelpers";
 
 // 200ms linear;
 const HeaderFilledContainer = ({isOpen}) => (
@@ -24,7 +25,8 @@ const HeaderFilledContainer = ({isOpen}) => (
 )
 
 const Header = ({ onMenuButtonClick }) => {
-    const [isScrolled, setIsScrolled] = useState(false);
+    const isHome = isHomePage();
+    const [isScrolled, setIsScrolled] = useState(!isHome);
     const handleScroll = useCallback(() => {
         if (!isScrolled && window.scrollY) {
             setIsScrolled(true);
@@ -34,7 +36,11 @@ const Header = ({ onMenuButtonClick }) => {
         }
     }, [isScrolled, setIsScrolled]);
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        if (isHome) {
+            window.addEventListener('scroll', handleScroll);
+        } else {
+            window.removeEventListener('scroll', handleScroll);
+        }
         return () => window.removeEventListener('scroll', handleScroll);
     })
     return (
@@ -48,7 +54,7 @@ const Header = ({ onMenuButtonClick }) => {
                         </TopAppBarIcon>
                         <TopAppBarTitle>
                             <Link to='/'>
-                                <LogoIcon className={`logo-icon ${!isScrolled ? 'logo-icon--onHeader' : ''}`} />
+                                <LogoIcon className={`logo-icon ${!isScrolled ? 'logo-icon--onBanner' : ''}`} />
                             </Link>
                         </TopAppBarTitle>
                     </TopAppBarSection>

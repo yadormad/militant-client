@@ -7,7 +7,6 @@ import HomeBanner from "./components/HomeBanner";
 import AbsolutePageWrapper from "../../components/pageWrapper/AbsolutePageWrapper";
 import AboutUsSection from "./components/AboutUsSection";
 import ArticleExcerptList from "../../components/articleExcerpt/ArticleExcerptList";
-import Canvas from '../../components/CanvasTest';
 
 class HomePage extends React.Component {
     componentDidMount() {
@@ -40,7 +39,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onComponentMount: () => {
-        dispatch(fetchArticlesList(0, 3));
+        dispatch(fetchArticlesList(0, 4));
         dispatch(fetchBannerImage());
         dispatch(fetchAboutUs())
     },

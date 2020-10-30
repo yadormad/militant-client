@@ -12,13 +12,4 @@ export const DATE_FORMATS = {
 
 dayjs.locale('ru');
 
-export const formatDate = (date, format = DATE_FORMATS.NO_YEAR_TIME) => dayjs(Number(date)).format(format);
-const reformatDate = (
-    date,
-    sourceFormat = DATE_FORMATS.SERVER_FORMAT,
-    format = DATE_FORMATS.NO_YEAR,
-) => dayjs(date).format(format);
-
-export const reformatDateAndTime = (date, time) => (
-    `${reformatDate(date)} в ${time}`
-);
+export const formatDate = (date, format = DATE_FORMATS.NO_YEAR_TIME) => dayjs(date).format(format);

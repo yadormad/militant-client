@@ -1,0 +1,18 @@
+.card-container-alt {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  background-color: #282c34;
+  transition: all ease-in-out 0.2s;
+}
+
+.card-container-alt:hover {
+  width: 100vw;
+}
+
+.card-img {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  background-color: #094d38;
+}

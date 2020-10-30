@@ -3,17 +3,17 @@ import Card, {
     CardPrimaryContent,
     CardMedia,
 } from "@material/react-card";
-import {formatDate, reformatDateAndTime} from "../../utils/DateHelpers";
 import ArticleExcerptContent from "./ArticleExcerptContent";
 import '@material/react-card/index.scss';
 import {withRouter} from "react-router-dom";
 import axios from 'axios'
+import {formatDate} from "../../utils/DateHelpers";
 
 class ArticleExcerptCard extends React.Component {
     getArticleDate() {
-        const {date, time, modified} = this.props.article;
-        if (date && time) return reformatDateAndTime(date, time);
-        return formatDate(modified);
+        const {date} = this.props.article;
+        if (date) return formatDate(date);
+        return '';
     }
 
     articleCollapseRef = React.createRef();
@@ -38,7 +38,7 @@ class ArticleExcerptCard extends React.Component {
             <div className='card-relative-container'>
                 <Card className={this.getCardContainerClassName()}>
                     <CardPrimaryContent onClick={this.goToArticle}>
-                        <CardMedia wide imageUrl={`${axios.defaults.baseURL}${image.fullImageUrl || image.overlayImageUrl}`} />
+                        <CardMedia wide imageUrl={`${image.fullImageUrl || image.overlayImageUrl}`} />
                     </CardPrimaryContent>
                     <ArticleExcerptContent
                         ref={this.articleCollapseRef}
