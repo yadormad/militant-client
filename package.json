@@ -10,7 +10,7 @@
     "@material/react-menu-surface": "^0.15.0",
     "@material/react-top-app-bar": "^0.14.1",
     "@material/ripple": "^3.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "interweave": "^11.2.0",
     "node-sass": "^4.12.0",
